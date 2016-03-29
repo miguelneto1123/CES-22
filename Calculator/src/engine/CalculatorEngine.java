@@ -1,5 +1,7 @@
 package engine;
 
+import errors.*;
+
 public class CalculatorEngine {
 	private int value;
 	private int keep;
@@ -45,7 +47,7 @@ public class CalculatorEngine {
 		binaryOperation('/');
 	}
 	
-	public void compute() {
+	public void compute() throws DivideByZeroException{
 		boolean hasOperator = false;
 		
 		switch (toDo) {
@@ -63,7 +65,8 @@ public class CalculatorEngine {
 			break;
 		case '/':
 			hasOperator = true;
-			value = keep / value;
+			if(value == 0) { throw new DivideByZeroException(); }
+			else{ value = keep / value; }
 			break;
 		default:
 			break;
