@@ -1,3 +1,5 @@
-# CES-22 Ex 1: Calculator
+#CES-22: Exercises
 
-This is an academic work, and has no profit purposes whatsoever. Feel free to edit, test, debug and suggest!
+This repo holds all the exercises for the 5th semester from ITA Computing
+Engineering course. It's an academic work, and has no profit purpose or
+whatsoever
