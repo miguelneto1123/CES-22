@@ -12,6 +12,12 @@ class WebRetriever {
 			os = soc.getOutputStream();
 			is = soc.getInputStream();
 	}
+	
+	WebRetriever(Socket s) throws IOException {
+		soc = s;
+		os = soc.getOutputStream();
+		is = soc.getInputStream();
+	}
 
 	public void request(String path) {
 		try {
@@ -22,6 +28,10 @@ class WebRetriever {
 			System.err.println("Error in HTTP request");
 		}
 	}
+	public void request(WebProxy p, String path) {
+		p.requestToServer(path);
+	}
+	
 	public void getResponse() {
 		int c;
 		try {
@@ -32,6 +42,11 @@ class WebRetriever {
 					"Web server");
 		}
 	}
+	
+	public void getResponse(WebProxy p) {
+		p.getResponseFromServer();
+	}
+	
 	public void close() {
 		try {
 			is.close(); os.close(); soc.close();
@@ -40,10 +55,10 @@ class WebRetriever {
 		}
 	}
 	
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		try {
-			WebRetriever w = new WebRetriever("www.nus.edu.sg", 80);
-			w.request("/NUSinfo/UG/ug.html");
+			WebRetriever w = new WebRetriever("www.ita.br", 80);
+			w.request("/grad/");
 			w.getResponse();
 			w.close();
 		} catch (UnknownHostException h) {
@@ -51,5 +66,5 @@ class WebRetriever {
 		} catch (IOException i) {
 			System.err.println("IOException in connecting to Host");
 		}
-	}
+	}*/
 }
