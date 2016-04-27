@@ -21,14 +21,22 @@ public class MyProxy {
 				BufferedReader buffer = new BufferedReader(inputServer);
 				PrintWriter pw = new PrintWriter(socClient.getOutputStream());
 				
-				pw.println("From proxy: " + buffer.readLine());
+				String proxyMessage = "From proxy: " + buffer.readLine();
 				
-				pw.close();
-				buffer.close();
+				pw.println(proxyMessage);
+				System.out.println(proxyMessage);
 			}
 			
 		} catch (IOException ioe) {
 			ioe.printStackTrace();
 		}
+	}
+	
+	public static void main(String args[]) {
+		MyServer server = new MyServer();
+		MyProxy proxy = new MyProxy();
+		
+		server.go(4242);
+		proxy.go(4242, 5050);
 	}
 }
