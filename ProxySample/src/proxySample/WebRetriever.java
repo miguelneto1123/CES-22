@@ -1,4 +1,4 @@
-package tests;
+package proxySample;
 import java.io.*;
 import java.net.*;
 
@@ -28,9 +28,10 @@ class WebRetriever {
 		String response = "";
 		System.out.println("HTTP RESPONSE:");
 		try {
-			while ((c = is.read()) != -1)
+			while ((c = is.read()) != -1) {
 				System.out.print((char) c) ;
-			response += (char) c;
+				response += (char) c;
+			}
 		} catch (IOException e) {
 			System.err.println("IOException in reading from " +
 					"Web server");
