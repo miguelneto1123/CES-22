@@ -3,11 +3,19 @@ package proxy;
 import java.net.*;
 import java.io.*;
 
-public class MyProxy {
+public class MyProxy implements Runnable{
 	private ServerSocket client;
 	private Socket server;
 	
-	public void go(int serverPort, int clientPort) {
+	private int serverPort;
+	private int clientPort;
+	
+	public MyProxy(int serverPort, int clientPort) {
+		this.serverPort = serverPort;
+		this.clientPort = clientPort;
+	}
+	
+	public void go() {
 		try {
 			client = new ServerSocket(clientPort);
 			
@@ -32,11 +40,16 @@ public class MyProxy {
 		}
 	}
 	
+	@Override
+	public void run() {
+		this.go();
+	}
+	
 	public static void main(String args[]) {
-		MyServer server = new MyServer();
-		MyProxy proxy = new MyProxy();
+		MyServer server = new MyServer(4242);
+		MyProxy proxy = new MyProxy(4242, 5050);
 		
-		server.go(4242);
-		proxy.go(4242, 5050);
+		server.go();
+		proxy.go();
 	}
 }

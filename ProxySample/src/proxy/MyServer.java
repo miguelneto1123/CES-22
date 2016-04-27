@@ -3,11 +3,16 @@ package proxy;
 import java.net.*;
 import java.io.*;
 
-public class MyServer {
+public class MyServer implements Runnable{
 	private String messages[] = {"Hello!", "Olá!", "Hola!", "Hallo!", "Konnichiwa!"};
 	ServerSocket ssoc = null;
+	private int port;
 	
-	public void go(int port) {
+	public MyServer(int port) {
+		this.port = port;
+	}
+	
+	public void go() {
 		try {
 			ssoc = new ServerSocket(port);
 			
@@ -29,4 +34,11 @@ public class MyServer {
 		int random = (int) (Math.random() * messages.length);
 		return messages[random];
 	}
+
+	@Override
+	public void run() {
+		this.go();	
+	}
+	
+	
 }
