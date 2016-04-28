@@ -185,7 +185,7 @@ public class MainFrame extends JFrame implements ActionListener {
 				String s = "" + c.display();
 				displayBox.setText(s);
 			} catch (DivideByZeroException dbze) {
-				displayBox.setText(dbze.getMessage());
+				displayBox.setText(dbze.toString());
 			}
 
 		}
