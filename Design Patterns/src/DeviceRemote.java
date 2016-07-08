@@ -1,6 +1,8 @@
 
 public class DeviceRemote implements RemotePlan {
 	
+	//-------- Builder
+	
 	private String actionRight;
 	private String actionLeft;
 	private String actionCenter;
@@ -27,5 +29,37 @@ public class DeviceRemote implements RemotePlan {
 	public String getButtonCenterAction() { return actionCenter; }
 	public String getButtonUpAction() { return actionUp; }
 	public String getButtonDownAction() { return actionDown; }
+	
+	//-------- Bridge
+	
+	private EntertainmentDevice device;
+	
+	public DeviceRemote(EntertainmentDevice dev){
+		this.device = dev;
+	}
+	
+	public void buttonRightPressed() {
+		this.device.buttonRightPressed();
+	}
+	
+	public void buttonLeftPressed() {
+		this.device.buttonLeftPressed();
+	}
+	
+	public void buttonUpPressed(){
+		this.device.buttonUpPressed();
+	}
+	
+	public void buttonDownPressed(){
+		this.device.buttonDownPressed();
+	}
+	
+	public void deviceFeedback() {
+		this.device.deviceFeedback();
+	}
+	
+	public void buttonCenterPressed(){
+		System.out.println(actionCenter);
+	}
 
 }

@@ -3,8 +3,8 @@ public class TVRemoteMuteBuilder implements RemoteBuilder {
 
 	private DeviceRemote remote;
 	
-	public TVRemoteMuteBuilder() {
-		this.remote = new DeviceRemote();
+	public TVRemoteMuteBuilder(EntertainmentDevice dev) {
+		this.remote = new DeviceRemote(dev);
 	}
 	
 	@Override
